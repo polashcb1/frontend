@@ -2,7 +2,7 @@
 import { Component, Input } from '@angular/core';
 
 // Project import
-import { NavigationItem } from '../../navigation';
+import { NavigationItem } from '../../navigation-item';
 
 @Component({
   selector: 'app-nav-item',

@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {SuperAdminComponent} from "./super-admin.component";
+import {PrivateModule} from "../private.module";
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
     SuperAdminComponent
   ],
   imports: [
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    PrivateModule
   ],
 })
 export class SuperAdminModule {

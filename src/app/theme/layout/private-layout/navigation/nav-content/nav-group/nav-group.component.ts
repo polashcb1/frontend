@@ -2,7 +2,7 @@
 import { Component, Input, NgZone, OnInit } from '@angular/core';
 
 // project import
-import { NavigationItem } from '../../navigation';
+import { NavigationItem } from '../../navigation-item';
 import { Location, LocationStrategy } from '@angular/common';
 
 @Component({

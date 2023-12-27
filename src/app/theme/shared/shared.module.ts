@@ -1,16 +1,16 @@
 // Angular Imports
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 // project import
-import { BreadcrumbModule, CardModule } from './components';
+import {CardModule} from './components';
 
-import { SpinnerComponent } from './components/spinner/spinner.component';
-import { NgScrollbarModule } from 'ngx-scrollbar';
+import {SpinnerComponent} from './components/spinner/spinner.component';
+import {NgScrollbarModule} from 'ngx-scrollbar';
 
 // bootstrap import
-import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbCollapseModule, NgbDropdownModule, NgbModule, NgbNavModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -18,7 +18,6 @@ import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@
     FormsModule,
     ReactiveFormsModule,
     CardModule,
-    BreadcrumbModule,
     NgbDropdownModule,
     NgbNavModule,
     NgbModule,
@@ -30,7 +29,6 @@ import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@
     FormsModule,
     ReactiveFormsModule,
     CardModule,
-    BreadcrumbModule,
     SpinnerComponent,
     NgbModule,
     NgbDropdownModule,
@@ -40,4 +38,5 @@ import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@
   ],
   declarations: [SpinnerComponent]
 })
-export class SharedModule {}
+export class SharedModule {
+}

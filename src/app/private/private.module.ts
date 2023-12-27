@@ -24,6 +24,9 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes)
   ],
+  exports: [
+    RoleConfigComponent
+  ]
 })
 export class PrivateModule {
 }
