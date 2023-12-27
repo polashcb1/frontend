@@ -12,6 +12,6 @@ constructor(private service: UserDetailsService) {
 }
 
   ngOnInit(): void {
-    this.service.getTest().subscribe(u => console.log(u));
+    // this.service.getTest().subscribe(u => console.log(u));
   }
 }

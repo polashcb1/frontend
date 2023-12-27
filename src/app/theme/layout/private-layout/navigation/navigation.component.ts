@@ -4,6 +4,7 @@ import {RoleConfigComponent} from "../../../../private/super-admin/role-config/r
 import {NavigationItem} from "./navigation-item";
 import {Route, Router} from "@angular/router";
 import {UserDetailsComponent} from "../../../../private/super-admin/user-details/user-details.component";
+import {DesignationConfigComponent} from "../../../../private/super-admin/designation-config/designation-config.component";
 
 @Component({
   selector: 'app-navigation',
@@ -46,6 +47,14 @@ export class NavigationComponent implements OnInit{
               type: 'component',
               icon: null,
               component: UserDetailsComponent,
+              children: null
+            },
+            {
+              id: 'designationConfig',
+              title: 'Designation Config',
+              type: 'component',
+              icon: null,
+              component: DesignationConfigComponent,
               children: null
             }
           ]

@@ -1,2 +1,14 @@
-<app-role-config>
-</app-role-config>
+  <div class="card card-body" *ngIf="tabs.length>0">
+    <mat-tab-group fitInkBarToContent>
+      <ng-container *ngFor="let tab of tabs; let index = index">
+        <mat-tab *ngIf="tab.title">
+          <ng-template mat-tab-label>
+            <div class="col pe-1">{{tab.title}}</div>
+            <button class="btn-close" style="height: .25em; width: .25em;" aria-label="Close" (click)="closeTab($event, index)">
+            </button>
+          </ng-template>
+          <ng-container *ngComponentOutlet="tab.component;"/>
+        </mat-tab>
+      </ng-container>
+    </mat-tab-group>
+  </div>

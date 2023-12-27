@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 
 // Project import
 import { NavigationItem } from '../../navigation-item';
+import {NavigationService} from "../navigation.service";
 
 @Component({
   selector: 'app-nav-item',
@@ -13,8 +14,11 @@ export class NavItemComponent {
   // public props
   @Input() item!: NavigationItem;
 
+  constructor(private navigation: NavigationService) {
+  }
   // public method
-  closeOtherMenu(event: any) {
+  closeOtherMenu(event: any, item: NavigationItem) {
+    this.navigation.menuEvent$.next(item);
     const ele = event.target;
     if (ele !== null && ele !== undefined) {
       const parent = ele.parentElement;

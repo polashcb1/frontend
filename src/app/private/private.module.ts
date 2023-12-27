@@ -5,6 +5,10 @@ import {DesignationConfigComponent} from "./super-admin/designation-config/desig
 import {RoleConfigComponent} from "./super-admin/role-config/role-config.component";
 import {UserDetailsComponent} from "./super-admin/user-details/user-details.component";
 import {PrivateLayoutComponent} from "../theme/layout/private-layout/private-layout.component";
+import {MatTab, MatTabsModule} from "@angular/material/tabs";
+import {MatIconModule} from "@angular/material/icon";
+import {CommonModule} from "@angular/common";
+import {SharedModule} from "../theme/shared/shared.module";
 
 
 const routes: Routes = [
