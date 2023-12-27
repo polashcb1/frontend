@@ -3,14 +3,14 @@ import { Component, NgZone } from '@angular/core';
 import { Location, LocationStrategy } from '@angular/common';
 
 // Project import
-import { BerryConfig } from '../../../app-config';
+import { BaseConfig } from '../../../app-config';
 
 @Component({
   selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  templateUrl: './private-layout.component.html',
+  styleUrls: ['./private-layout.component.scss']
 })
-export class AdminComponent {
+export class PrivateLayoutComponent {
   // public props
   berryConfig;
   navCollapsed: boolean;
@@ -23,7 +23,7 @@ export class AdminComponent {
     private location: Location,
     private locationStrategy: LocationStrategy
   ) {
-    this.berryConfig = BerryConfig;
+    this.berryConfig = BaseConfig;
 
     let current_url = this.location.path();
     const baseHref = this.locationStrategy.getBaseHref();
@@ -36,7 +36,7 @@ export class AdminComponent {
     }
 
     this.windowWidth = window.innerWidth;
-    this.navCollapsed = this.windowWidth >= 1025 ? BerryConfig.isCollapse_menu : false;
+    this.navCollapsed = this.windowWidth >= 1025 ? BaseConfig.isCollapse_menu : false;
   }
 
   // public method
