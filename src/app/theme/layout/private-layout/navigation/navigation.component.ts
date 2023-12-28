@@ -11,7 +11,7 @@ import {DesignationConfigComponent} from "../../../../private/super-admin/design
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit{
+export class NavigationComponent implements OnInit {
   // public props
   @Output() NavCollapsedMob = new EventEmitter();
   @Input() accessType;
@@ -55,31 +55,6 @@ export class NavigationComponent implements OnInit{
               type: 'component',
               icon: null,
               component: DesignationConfigComponent,
-              children: null
-            }
-          ]
-        },
-        {
-          id: 'configuration2',
-          title: 'Configuration 2',
-          type: 'group',
-          icon: 'ti ti-key',
-          component: null,
-          children: [
-            {
-              id: 'roleConfig2',
-              title: 'Role Config 2',
-              type: 'component',
-              icon: null,
-              component: RoleConfigComponent,
-              children: null
-            },
-            {
-              id: 'userDetails2',
-              title: 'User details 2',
-              type: 'component',
-              icon: null,
-              component: UserDetailsComponent,
               children: null
             }
           ]
