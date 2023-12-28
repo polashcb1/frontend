@@ -17,7 +17,6 @@ import {NavItemComponent} from './theme/layout/private-layout/navigation/nav-con
 import {SharedModule} from './theme/shared/shared.module';
 import {PublicLayoutComponent} from './theme/layout/public-layout/public-layout.component';
 import {HttpClientModule} from "@angular/common/http";
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @NgModule({
   declarations: [
@@ -34,7 +33,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     NavCollapseComponent,
     PublicLayoutComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule, HttpClientModule,FontAwesomeModule],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule, HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {
