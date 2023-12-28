@@ -5,7 +5,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {PrivateLayoutComponent} from './theme/layout/private-layout/private-layout.component';
-import {NavigationItem} from './theme/layout/private-layout/navigation/navigation';
 import {NavBarComponent} from './theme/layout/private-layout/nav-bar/nav-bar.component';
 import {NavLeftComponent} from './theme/layout/private-layout/nav-bar/nav-left/nav-left.component';
 import {NavRightComponent} from './theme/layout/private-layout/nav-bar/nav-right/nav-right.component';
@@ -17,6 +16,7 @@ import {NavCollapseComponent} from './theme/layout/private-layout/navigation/nav
 import {NavItemComponent} from './theme/layout/private-layout/navigation/nav-content/nav-item/nav-item.component';
 import {SharedModule} from './theme/shared/shared.module';
 import {PublicLayoutComponent} from './theme/layout/public-layout/public-layout.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -33,8 +33,7 @@ import {PublicLayoutComponent} from './theme/layout/public-layout/public-layout.
     NavCollapseComponent,
     PublicLayoutComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule],
-  providers: [NavigationItem],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule, HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {

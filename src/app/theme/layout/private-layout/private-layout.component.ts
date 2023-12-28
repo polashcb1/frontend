@@ -12,7 +12,7 @@ import { BaseConfig } from '../../../app-config';
 })
 export class PrivateLayoutComponent {
   // public props
-  berryConfig;
+  baseConfig;
   navCollapsed: boolean;
   navCollapsedMob = false;
   windowWidth: number;
@@ -23,7 +23,7 @@ export class PrivateLayoutComponent {
     private location: Location,
     private locationStrategy: LocationStrategy
   ) {
-    this.berryConfig = BaseConfig;
+    this.baseConfig = BaseConfig;
 
     let current_url = this.location.path();
     const baseHref = this.locationStrategy.getBaseHref();
@@ -32,7 +32,7 @@ export class PrivateLayoutComponent {
     }
 
     if (current_url === baseHref + '/layout/theme-compact' || current_url === baseHref + '/layout/box') {
-      this.berryConfig.isCollapse_menu = true;
+      this.baseConfig.isCollapse_menu = true;
     }
 
     this.windowWidth = window.innerWidth;

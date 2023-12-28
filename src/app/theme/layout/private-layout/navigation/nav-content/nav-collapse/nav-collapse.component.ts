@@ -2,7 +2,7 @@
 import { Component, Input } from '@angular/core';
 
 // project import
-import { NavigationItem } from '../../navigation';
+import { NavigationItem } from '../../navigation-item';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({

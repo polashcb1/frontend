@@ -1,2 +1,56 @@
+<div class="container">
+  <div class="border-bottom">
+    <h4>User Details</h4>
+  </div>
 
+  <div class="m-3 row form-group">
+    <div class="col-4">
+      <label for="name" class="form-label" required>Name</label>
+    </div>
+    <div class="col-8">
+      <input type="text" class="form-control" id="name">
+    </div>
+  </div>
+  <div class="m-3 row form-group">
+    <div class="col-4">
+      <label for="designation" class="form-label">Designation</label>
+    </div>
+    <div class="col-8">
+      <select class="form-select" aria-label="Grade" id="designation">
+        <option selected>Select Designation</option>
+        <option value="1">Associate Manager</option>
+        <option value="2">Senior Officer</option>
+        <option value="3">Chief Technology Officer</option>
+      </select>
+    </div>
+  </div>
 
+  <div class="row m-3">
+    <div class="col-4">
+      <label class="form-label">DOB</label>
+    </div>
+    <div class="col-8">
+      <mat-form-field>
+        <mat-label>Select Date of Birth</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="m-3 row form-group">
+    <div class="col-4">
+      <label for="username" class="form-label" required>User Name</label>
+    </div>
+    <div class="col-8">
+      <input type="text" class="form-control" id="username">
+    </div>
+  </div>
+
+  <div class="m-3 row">
+    <div class="col-12">
+      <button type="button" class="btn btn-primary float-end pr-5">Save</button>
+    </div>
+  </div>
+</div>

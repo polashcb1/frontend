@@ -5,6 +5,14 @@ import {DesignationConfigComponent} from "./super-admin/designation-config/desig
 import {RoleConfigComponent} from "./super-admin/role-config/role-config.component";
 import {UserDetailsComponent} from "./super-admin/user-details/user-details.component";
 import {PrivateLayoutComponent} from "../theme/layout/private-layout/private-layout.component";
+import {MatTab, MatTabsModule} from "@angular/material/tabs";
+import {MatIconModule} from "@angular/material/icon";
+import {CommonModule} from "@angular/common";
+import {SharedModule} from "../theme/shared/shared.module";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 
 const routes: Routes = [
@@ -22,8 +30,12 @@ const routes: Routes = [
     UserDetailsComponent
   ],
   imports: [
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule
   ],
+  exports: [
+    RoleConfigComponent
+  ]
 })
 export class PrivateModule {
 }

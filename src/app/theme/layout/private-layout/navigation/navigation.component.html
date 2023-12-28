@@ -1,4 +1,3 @@
-<!-- [ Sidebar Menu ] start -->
 <nav>
   <div class="navbar-wrapper">
     <div class="m-header">
@@ -8,7 +7,7 @@
         <img src="../../../../../assets/images/logo-dark.svg" class="logo logo-lg" />
       </a>
     </div>
-    <app-nav-content (NavCollapsedMob)="navCollapseMob()" class="scroll-div w-100"></app-nav-content>
+    <app-nav-content  [nav] = superAdminNavigationItems [accessType]="accessType" (NavCollapsedMob)="navCollapseMob()" class="scroll-div w-100"></app-nav-content>
   </div>
 </nav>
 <!-- [ Sidebar Menu ] end -->

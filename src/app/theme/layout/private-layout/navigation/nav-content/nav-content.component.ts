@@ -1,10 +1,11 @@
 // Angular import
-import { Component, EventEmitter, NgZone, OnInit, Output } from '@angular/core';
+import {Component, EventEmitter, Input, NgZone, OnInit, Output} from '@angular/core';
 import { Location, LocationStrategy } from '@angular/common';
 import { environment } from 'src/environments/environment';
 
 // project import
-import { NavigationItem } from '../navigation';
+import { NavigationItem } from '../navigation-item';
+import {Tab} from "./tab.model";
 
 @Component({
   selector: 'app-nav-content',
@@ -14,21 +15,19 @@ import { NavigationItem } from '../navigation';
 export class NavContentComponent implements OnInit {
   // public props
   @Output() NavCollapsedMob: EventEmitter<any> = new EventEmitter();
-
+  @Input() accessType;
+  @Input() nav: NavigationItem[];
   // version
   currentApplicationVersion = environment.appVersion;
 
-  navigation: any;
   windowWidth = window.innerWidth;
-
+  tabs: Tab[] = [];
   // Constructor
   constructor(
-    public nav: NavigationItem,
     private zone: NgZone,
     private location: Location,
     private locationStrategy: LocationStrategy
   ) {
-    this.navigation = this.nav.get();
   }
 
   // Life cycle events
@@ -39,6 +38,7 @@ export class NavContentComponent implements OnInit {
   }
 
   fireOutClick() {
+
     let current_url = this.location.path();
     const baseHref = this.locationStrategy.getBaseHref();
     if (baseHref) {
@@ -67,5 +67,17 @@ export class NavContentComponent implements OnInit {
     if (this.windowWidth < 1025 && document.querySelector('app-navigation.coded-navbar').classList.contains('mob-open')) {
       this.NavCollapsedMob.emit();
     }
+  }
+
+  onAdd(value: NavigationItem): void {
+    if (this.tabs.find(u => u.title === value.title)) {
+      return;
+    }
+    const tab: Tab = {
+      id: value.id,
+      title: value.title,
+      component: value.component
+    }
+    this.tabs.push(tab);
   }
 }
