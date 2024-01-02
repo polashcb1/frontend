@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -16,11 +16,15 @@ import {NavCollapseComponent} from './theme/layout/private-layout/navigation/nav
 import {NavItemComponent} from './theme/layout/private-layout/navigation/nav-content/nav-item/nav-item.component';
 import {SharedModule} from './theme/shared/shared.module';
 import {PublicLayoutComponent} from './theme/layout/public-layout/public-layout.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {appInitializer, ErrorInterceptor, JwtInterceptor} from "./_helpers";
+import {AuthenticationService} from "./_services";
+import {PagenotfoundComponent} from "./pagenotfound/pagenotfound.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    PagenotfoundComponent,
     PrivateLayoutComponent,
     NavBarComponent,
     NavLeftComponent,
@@ -34,6 +38,9 @@ import {HttpClientModule} from "@angular/common/http";
     PublicLayoutComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule, HttpClientModule],
+  providers: [{ provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthenticationService] },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

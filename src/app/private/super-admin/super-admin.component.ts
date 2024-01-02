@@ -18,11 +18,14 @@ export class SuperAdminComponent {
   tabs: NavigationItem[] = [];
   constructor(private navigationService: NavigationService) {
     this.navigationService.menuEvent$.asObservable().subscribe(u => {
-      if (this.tabs.length>0 && this.tabs.find(v => v.title === u.title)) {
+      const existingTabIndex = this.tabs.findIndex(v => v.title === u.title);
+      if (existingTabIndex !== -1) {
+        this.tabGroup.selectedIndex = existingTabIndex;
         return;
       }
       if(u!==null && u.title){
         this.tabs.push(u);
+        this.tabGroup.selectedIndex = this.tabs.length - 1;
       }
     });
   }
