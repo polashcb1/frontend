@@ -83,7 +83,8 @@
               "browserTarget": "free-version:build:production"
             },
             "development": {
-              "browserTarget": "free-version:build:development"
+              "browserTarget": "free-version:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
