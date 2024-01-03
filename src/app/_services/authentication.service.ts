@@ -27,16 +27,16 @@ export class AuthenticationService {
     login(username: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/v1/login`, { username, password }, { withCredentials: true })
             .pipe(map(user => {
+              console.log(user);
                 sessionStorage.setItem("refreshToken", user.refreshToken)
                 this.userSubject.next(user);
-                //todo: set refresh token in browser storage
                 this.startRefreshTokenTimer();
                 return user;
             }));
     }
 
     logout() {
-        this.http.post<any>(`${environment.apiUrl}/users/revoke-token`, {}, { withCredentials: true }).subscribe();
+        this.http.post<any>(`${environment.apiUrl}/v1/revoke-token`, {refreshToken: sessionStorage.getItem('refreshToken')}, { withCredentials: true }).subscribe();
         this.stopRefreshTokenTimer();
         this.userSubject.next(null);
         this.router.navigate(['/public/login']);
@@ -45,9 +45,8 @@ export class AuthenticationService {
     refreshToken() {
       return this.http.post<any>(`${environment.apiUrl}/v1/refresh-token`, {refreshToken: sessionStorage.getItem('refreshToken')}, { withCredentials: true })
         .pipe(map((user) => {
-          console.log(user);
           this.userSubject.next(user);
-          this.startRefreshTokenTimer();
+          // this.startRefreshTokenTimer();
           return user;
         }));
     }
@@ -56,14 +55,22 @@ export class AuthenticationService {
 
     private refreshTokenTimeout?: any;
 
+     updateJwt(){
+      const jwtBase64 = this.userValue!.jwtToken!.split('.')[1];
+      const jwtToken = JSON.parse(atob(jwtBase64));
+      const expires = new Date(jwtToken.exp+'');
+      if (jwtToken.exp - Date.now()<=0){
+        this.refreshToken()
+      }
+  }
     private startRefreshTokenTimer() {
         // parse json object from base64 encoded jwt token
         const jwtBase64 = this.userValue!.jwtToken!.split('.')[1];
         const jwtToken = JSON.parse(atob(jwtBase64));
-
         // set a timeout to refresh the token a minute before it expires
         const expires = new Date(jwtToken.exp * 1000);
         const timeout = expires.getTime() - Date.now() - (60 * 1000);
+        console.log(timeout);
         this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
     }
 
