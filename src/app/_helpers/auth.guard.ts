@@ -12,9 +12,8 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.authenticationService.userValue;
-        console.log('in auth guard');
-        console.log(user);
         if (user) {
+          // this.router.navigate([`/private/${user?.route}`]);
             // logged in so return true
             return true;
         } else {

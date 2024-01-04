@@ -26,7 +26,7 @@
             <h4> Nafiz ur Rahman </h4>
             <p class="text-muted">Project Admin</p>
             <ng-scrollbar style="height: calc(40vh - 280px)" visibility="hover">
-              <a [routerLink]="['/guest/login']" class="dropdown-item">
+              <a (click)="onLogout()" class="dropdown-item">
                 <i class="ti ti-logout"></i>
                 <span>Logout</span>
               </a>

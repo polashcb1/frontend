@@ -40,9 +40,9 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.loginForm.get('username').value, this.loginForm.get('password').value)
       .pipe(first())
       .subscribe({
-        next: () => {
+        next: (user) => {
           // get return url from route parameters or default to '/'
-          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || `/private/super-admin`;
           console.log(returnUrl);
           this.router.navigate([returnUrl]);
         },
