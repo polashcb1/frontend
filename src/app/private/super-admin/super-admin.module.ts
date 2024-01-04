@@ -5,6 +5,13 @@ import {PrivateModule} from "../private.module";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatIconModule} from "@angular/material/icon";
 import {SharedModule} from "../../theme/shared/shared.module";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {DesignationConfigComponent} from "./designation-config/designation-config.component";
+import {RoleConfigComponent} from "./role-config/role-config.component";
+import {UserDetailsComponent} from "./user-details/user-details.component";
 
 
 const routes: Routes = [
@@ -16,14 +23,18 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    SuperAdminComponent
+    SuperAdminComponent,
+    DesignationConfigComponent,
+    RoleConfigComponent,
+    UserDetailsComponent
   ],
   imports: [
     RouterModule.forChild(routes),
     PrivateModule,
     SharedModule,
     MatTabsModule,
-    MatIconModule],
+    MatIconModule,
+    MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule],
 })
 export class SuperAdminModule {
 }

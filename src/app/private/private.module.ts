@@ -19,17 +19,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    DesignationConfigComponent,
-    RoleConfigComponent,
-    UserDetailsComponent
-  ],
   imports: [
     RouterModule.forChild(routes),
-    MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule
-  ],
-  exports: [
-    RoleConfigComponent
   ]
 })
 export class PrivateModule {
