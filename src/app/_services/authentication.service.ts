@@ -25,10 +25,12 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
+      console.log('login')
         return this.http.post<any>(`${environment.apiUrl}/v1/login`, { username, password }, { withCredentials: true })
             .pipe(map(user => {
-              console.log(user);
-                sessionStorage.setItem("refreshToken", user.refreshToken)
+              console.log('hello world');
+                sessionStorage.setItem("refreshToken", user.refreshToken);
+                sessionStorage.setItem("jwtToken", user.jwtToken);
                 this.userSubject.next(user);
                 this.startRefreshTokenTimer();
                 return user;
@@ -45,6 +47,7 @@ export class AuthenticationService {
     refreshToken() {
       return this.http.post<any>(`${environment.apiUrl}/v1/refresh-token`, {refreshToken: sessionStorage.getItem('refreshToken')}, { withCredentials: true })
         .pipe(map((user) => {
+          sessionStorage.setItem("jwtToken", user.jwtToken);
           this.userSubject.next(user);
           // this.startRefreshTokenTimer();
           return user;
@@ -55,10 +58,9 @@ export class AuthenticationService {
 
     private refreshTokenTimeout?: any;
 
-     updateJwt(){
-      const jwtBase64 = this.userValue!.jwtToken!.split('.')[1];
-      const jwtToken = JSON.parse(atob(jwtBase64));
-      const expires = new Date(jwtToken.exp+'');
+     updateJwt(jwtToken){
+      const jwtBase64 = jwtToken.split('.')[1];
+      jwtToken = JSON.parse(atob(jwtBase64));
       if (jwtToken.exp - Date.now()<=0){
         this.refreshToken()
       }
@@ -70,7 +72,6 @@ export class AuthenticationService {
         // set a timeout to refresh the token a minute before it expires
         const expires = new Date(jwtToken.exp * 1000);
         const timeout = expires.getTime() - Date.now() - (60 * 1000);
-        console.log(timeout);
         this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
     }
 

@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: (user) => {
+          console.log(user);
           // get return url from route parameters or default to '/'
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || `/private/super-admin`;
           console.log(returnUrl);
