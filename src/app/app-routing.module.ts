@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from "./_helpers";
-import {PagenotfoundComponent} from "./pagenotfound/pagenotfound.component";
+import {PrivateComponent} from "./private/private.component";
 
 const routes: Routes = [
   {
@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./private/private.module').then((m) => m.PrivateModule),
     canActivate: [AuthGuard]
   },
-  { path: '**', component: PagenotfoundComponent },
+  {path: '**', component: PrivateComponent, canActivate: [AuthGuard]},
 
 ];
 

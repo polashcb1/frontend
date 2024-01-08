@@ -8,6 +8,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {PrivateComponent} from "./private.component";
 
 
 const routes: Routes = [
@@ -19,8 +20,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  declarations: [PrivateComponent],
   imports: [
-    RouterModule.forChild(routes),
+    RouterModule.forChild(routes)
   ]
 })
 export class PrivateModule {
