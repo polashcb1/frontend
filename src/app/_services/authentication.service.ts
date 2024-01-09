@@ -11,7 +11,7 @@ import {environment} from "../../environments/environment";
 export class AuthenticationService {
   private userSubject: BehaviorSubject<User | null>;
   public user: Observable<User | null>;
-
+  public menu: Observable<any[]>;
   constructor(
     private router: Router,
     private http: HttpClient
@@ -25,8 +25,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    console.log('login')
-    return this.http.post<any>(`${environment.apiUrl}/v1/login`, {username, password}, {withCredentials: true})
+    return this.http.post<any>(`${environment.apiUrl}/v1/public/login`, {username, password}, {withCredentials: true})
       .pipe(map(user => {
         sessionStorage.setItem("refreshToken", user.refreshToken);
         sessionStorage.setItem("jwtToken", user.jwtToken);
@@ -37,14 +36,14 @@ export class AuthenticationService {
   }
 
   logout() {
-    this.http.post<any>(`${environment.apiUrl}/v1/revoke-token`, {refreshToken: sessionStorage.getItem('refreshToken')}, {withCredentials: true}).subscribe();
+    this.http.post<any>(`${environment.apiUrl}/v1/user/revoke-token`, {refreshToken: sessionStorage.getItem('refreshToken')}, {withCredentials: true}).subscribe();
     this.stopRefreshTokenTimer();
     this.userSubject.next(null);
     this.router.navigate(['/public/login']);
   }
 
   refreshToken() {
-    return this.http.post<any>(`${environment.apiUrl}/v1/refresh-token`, {refreshToken: sessionStorage.getItem('refreshToken')}, {withCredentials: true})
+    return this.http.post<any>(`${environment.apiUrl}/v1/user/refresh-token`, {refreshToken: sessionStorage.getItem('refreshToken')}, {withCredentials: true})
       .pipe(map((user) => {
         sessionStorage.setItem("jwtToken", user.jwtToken);
         this.userSubject.next(user);

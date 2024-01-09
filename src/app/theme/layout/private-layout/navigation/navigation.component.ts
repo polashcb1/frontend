@@ -2,9 +2,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {RoleConfigComponent} from "../../../../private/super-admin/role-config/role-config.component";
 import {NavigationItem} from "./navigation-item";
-import {Route, Router} from "@angular/router";
+import {ActivatedRoute, Route, Router} from "@angular/router";
 import {UserDetailsComponent} from "../../../../private/super-admin/user-details/user-details.component";
 import {DesignationConfigComponent} from "../../../../private/super-admin/designation-config/designation-config.component";
+import {AuthenticationService} from "../../../../_services";
+import {MenuService} from "../../../../_services/menu.service";
 
 @Component({
   selector: 'app-navigation',
@@ -17,6 +19,8 @@ export class NavigationComponent implements OnInit {
   @Input() accessType;
   navCollapsedMob = window.innerWidth;
   windowWidth: number;
+  hashmap = new Map<string, Component>();
+  path;
 
   superAdminNavigationItems: NavigationItem[] = [
     {
@@ -63,8 +67,11 @@ export class NavigationComponent implements OnInit {
     }
   ];
 
-  constructor(private router: Router) {
-    console.log(this.router.getCurrentNavigation());
+  constructor(private route: ActivatedRoute, private authService: AuthenticationService, private menuService: MenuService ) {
+    this.route.url.subscribe(u => this.path = u[0].path);
+    authService.user.subscribe(u => console.log(u));
+    this.menuService.getMenusByUserType('SUPER_ADMIN').subscribe(u => console.log(u));
+
   }
 
   // public method

@@ -12,6 +12,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {DesignationConfigComponent} from "./designation-config/designation-config.component";
 import {RoleConfigComponent} from "./role-config/role-config.component";
 import {UserDetailsComponent} from "./user-details/user-details.component";
+import {CommonModule} from "@angular/common";
 
 
 const routes: Routes = [
@@ -30,7 +31,7 @@ const routes: Routes = [
   ],
   imports: [
     RouterModule.forChild(routes),
-    PrivateModule,
+    CommonModule,
     SharedModule,
     MatTabsModule,
     MatIconModule,

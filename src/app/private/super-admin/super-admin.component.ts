@@ -1,4 +1,4 @@
-import {Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {Component, ComponentFactoryResolver, QueryList, ViewChild, ViewChildren, ViewContainerRef} from '@angular/core';
 import {NavigationService} from "../../theme/layout/private-layout/navigation/nav-content/navigation.service";
 import {NavigationItem} from "../../theme/layout/private-layout/navigation/navigation-item";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
@@ -9,14 +9,14 @@ import {MatTab, MatTabGroup} from "@angular/material/tabs";
   styleUrls: ['./super-admin.component.scss']
 })
 export class SuperAdminComponent {
-
+  // @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;
   @ViewChild(MatTabGroup, {read: MatTabGroup})
   tabGroup!: MatTabGroup;
   @ViewChildren(MatTab, {read: MatTab})
   tabNodes!: QueryList<MatTab>;
   closedTabs: number[] = [];
   tabs: NavigationItem[] = [];
-  constructor(private navigationService: NavigationService) {
+  constructor(private navigationService: NavigationService, private resolver: ComponentFactoryResolver) {
     this.navigationService.menuEvent$.asObservable().subscribe(u => {
       const existingTabIndex = this.tabs.findIndex(v => v.title === u.title);
       if (existingTabIndex !== -1) {
@@ -36,5 +36,4 @@ export class SuperAdminComponent {
     this.tabGroup.selectedIndex = this.tabNodes.length - 1;
     this.tabs.splice(index, 1);
   }
-
 }
