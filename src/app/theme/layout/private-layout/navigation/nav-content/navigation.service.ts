@@ -5,12 +5,12 @@ import {Injectable} from "@angular/core";
 @Injectable({providedIn: "root"})
 export class NavigationService{
 
-  private _menuEvent$ = new BehaviorSubject<any>([]);
-  get menuEvent$(): BehaviorSubject<any> {
-    return this._menuEvent$;
+  private _getMenuEvent$ = new BehaviorSubject<any>([]);
+  get getMenuEvent$(): BehaviorSubject<any> {
+    return this._getMenuEvent$;
   }
-
-  set menuEvent$(value: BehaviorSubject<any>) {
-    this._menuEvent$ = value;
-  }
+  //
+  // set setMenuEvent$(value: BehaviorSubject<any>) {
+  //   this._getMenuEvent$ = value;
+  // }
 }

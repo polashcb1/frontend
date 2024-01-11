@@ -18,7 +18,7 @@ export class NavItemComponent {
   }
   // public method
   closeOtherMenu(event: any, item: NavigationItem) {
-    this.navigation.menuEvent$.next(item);
+    this.navigation?.getMenuEvent$?.next(item);
     const ele = event.target;
     if (ele !== null && ele !== undefined) {
       const parent = ele.parentElement;

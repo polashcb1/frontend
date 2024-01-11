@@ -1,0 +1,163 @@
+<div class="container">
+  <div class="border-bottom d-flex align-items-center justify-content-between">
+    <h4>External Move Money</h4>
+  </div>
+  <div class="px-2" style="background-color: aliceblue">
+    <h4>Transaction Details</h4>
+  </div>
+
+  <form [formGroup]="extmoveMoneyForm" class="d-flex">
+    <div class="form-group col-6 p-3">
+      <label for="sourceaccnum" class="form-label">Source Account Number</label>
+      <input
+        type="text"
+        class="form-control"
+        id="sourceaccnum"
+        formControlName="sourceaccnum"
+        required
+        [class.is-invalid]="sourceaccnum.touched && sourceaccnum.invalid"
+      />
+      <div *ngIf="sourceaccnum.touched && sourceaccnum.hasError('required')" class="invalid-feedback"
+        >Source Account Number is required.</div
+      >
+
+      <label for="sourceaccoutlet" class="form-label pt-1">Source Account Outlet Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="sourceaccoutlet"
+        formControlName="sourceaccoutlet"
+        required
+        [class.is-invalid]="sourceaccoutlet.touched && sourceaccoutlet.invalid"
+      />
+      <div *ngIf="sourceaccoutlet.touched && sourceaccoutlet.hasError('required')" class="invalid-feedback"
+        >Source Account Outlet Name is required.</div
+      >
+
+      <label for="destaccounttitle" class="form-label pt-1">Destination Account Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="destaccounttitle"
+        formControlName="destaccounttitle"
+        required
+        [class.is-invalid]="destaccounttitle.touched && destaccounttitle.invalid"
+      />
+      <div *ngIf="destaccounttitle.touched && destaccounttitle.hasError('required')" class="invalid-feedback"
+        >Destination Account Title is required.</div
+      >
+
+      <label for="transfertype" class="form-label pt-1">Transfer Type</label>
+      <select class="form-select" aria-label="Grade"  >
+
+          <option value="" disabled selected hidden>Select Transfer Type  </option>
+          <option value="BEFTN">BEFTN</option>
+          <option value="BEFTN">NPSB</option>
+          <option value="BEFTN">RTGS</option>
+      </select>
+      <!-- type="text"
+        class="form-control"
+        id="transfertype"
+        formControlName="transfertype"
+        required
+        [class.is-invalid]="transfertype.touched && destaccounttitle.invalid"
+      /> -->
+      <!-- <div *ngIf="destaccounttitle.touched && destaccounttitle.hasError('required')" class="invalid-feedback"
+        >Destination Account Title is required.</div
+      > -->
+
+      <label for="transactionremarks" class="form-label pt-1">Transaction Remarks</label>
+      <input
+        type="text"
+        class="form-control"
+        id="transactionremarks"
+        formControlName="transactionremarks"
+        required
+        [class.is-invalid]="transactionremarks.touched && transactionremarks.invalid"
+      />
+      <div *ngIf="transactionremarks.touched && transactionremarks.hasError('required')" class="invalid-feedback"
+        >Transaction Remarks is required.</div
+      >
+    </div>
+
+    <div class="col-6 p-3">
+      <label for="sourceacctitle" class="form-label">Source Account Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="sourceacctitle"
+        formControlName="sourceacctitle"
+        required
+        [class.is-invalid]="sourceacctitle.touched && sourceacctitle.invalid"
+      />
+      <div *ngIf="sourceacctitle.touched && sourceacctitle.hasError('required')" class="invalid-feedback"
+        >Source Account Title is required.</div
+      >
+
+      <label for="destaccnum" class="form-label pt-1">Destination Account Number</label>
+      <input
+        type="text"
+        class="form-control"
+        id="destaccnum"
+        formControlName="destaccnum"
+        required
+        [class.is-invalid]="destaccnum.touched && destaccnum.invalid"
+      />
+      <div *ngIf="destaccnum.touched && destaccnum.hasError('required')" class="invalid-feedback"
+        >Destination Account Number is required.</div
+      >
+
+      <label for="destaccoutlet" class="form-label pt-1">Destination Account Outlet Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="destaccoutlet"
+        formControlName="destaccoutlet"
+        required
+        [class.is-invalid]="destaccoutlet.touched && destaccoutlet.invalid"
+      />
+      <div *ngIf="destaccoutlet.touched && destaccoutlet.hasError('required')" class="invalid-feedback"
+        >Destination Account Outlet Name is required.</div
+      >
+
+      <label for="amount" class="form-label pt-1">Transfer Amount</label>
+      <input
+        type="text"
+        class="form-control"
+        id="amount"
+        formControlName="amount"
+        required
+        [class.is-invalid]="amount.touched && amount.invalid"
+      />
+      <div *ngIf="amount.touched && amount.hasError('required')" class="invalid-feedback">Amount is required.</div>
+
+      <label for="transactionremarks" class="form-label pt-1">Transaction Remarks</label>
+      <input
+        type="text"
+        class="form-control"
+        id="transactionremarks"
+        formControlName="transactionremarks"
+        required
+        [class.is-invalid]="transactionremarks.touched && transactionremarks.invalid"
+      />
+      <div *ngIf="transactionremarks.touched && transactionremarks.hasError('required')" class="invalid-feedback"
+        >Transaction Remarks is required.</div
+      >
+    </div>
+  </form>
+
+  <div class="d-flex flex-row-reverse">
+    <button type="button" class="btn btn-primary d-flex align-items-end border">
+      Proceed
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
+    <button type="button" class="btn d-flex align-items-center">
+      <mat-icon>rotate_left</mat-icon>
+      Reset</button
+    >
+    <button type="button" class="btn d-flex align-items-center">
+      <mat-icon>clear</mat-icon>
+      Back</button
+    >
+  </div>
+</div>

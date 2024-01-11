@@ -8,6 +8,7 @@ import {DesignationConfigComponent} from "../../../../private/access-control/des
 import {AuthenticationService} from "../../../../_services";
 import {MenuService} from "../../../../_services/menu.service";
 import {AccessControlConstant} from "../../../../_constants/access-control.constant";
+import {OperationsConstant} from "../../../../_constants/operations.constant";
 
 @Component({
   selector: 'app-navigation',
@@ -41,7 +42,12 @@ export class NavigationComponent implements OnInit {
     this.route.url.subscribe(u => {
       this.path = u[0].path
       this.menuService.getMenusByModule(this.path).subscribe(v => {
-        this.menuGenerator(v, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)
+        if(this.path === 'access-control'){
+          this.menuGenerator(v, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)
+        } else if(this.path === 'operations'){
+          this.menuGenerator(v, OperationsConstant.OPERATIONS_COMPONENT_MAP)
+        }
+
       });
     });
   }

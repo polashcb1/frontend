@@ -10,6 +10,11 @@ const routes: Routes = [
     component: PrivateLayoutComponent,
     loadChildren: () => import('./access-control/access-control.module').then((m) => m.AccessControlModule)
   },
+  {
+    path: 'operations',
+    component: PrivateLayoutComponent,
+    loadChildren: () => import('./operations/operations.module').then((m) => m.OperationsModule)
+  }
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 // Angular import
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {ActivatedRoute, Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-nav-logo',
@@ -13,7 +14,7 @@ export class NavLogoComponent {
   windowWidth: number;
 
   // Constructor
-  constructor() {
+  constructor(private router: Router) {
     this.windowWidth = window.innerWidth;
   }
 
@@ -23,5 +24,9 @@ export class NavLogoComponent {
       this.navCollapsed = !this.navCollapsed;
       this.NavCollapse.emit();
     }
+  }
+  reload(){
+    this.router.navigate(["/"]).then(v => location.reload());
+    location.reload();
   }
 }
