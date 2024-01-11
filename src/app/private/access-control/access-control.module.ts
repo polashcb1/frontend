@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {SuperAdminComponent} from "./super-admin.component";
+import {AccessControlComponent} from "./access-control.component";
 import {PrivateModule} from "../private.module";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatIconModule} from "@angular/material/icon";
@@ -18,13 +18,13 @@ import {CommonModule} from "@angular/common";
 const routes: Routes = [
   {
     path: '',
-    component: SuperAdminComponent
+    component: AccessControlComponent
   },
 ];
 
 @NgModule({
   declarations: [
-    SuperAdminComponent,
+    AccessControlComponent,
     DesignationConfigComponent,
     RoleConfigComponent,
     UserDetailsComponent
@@ -37,5 +37,5 @@ const routes: Routes = [
     MatIconModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule],
 })
-export class SuperAdminModule {
+export class AccessControlModule {
 }

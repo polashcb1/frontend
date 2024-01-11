@@ -26,7 +26,7 @@ export class MenuService {
     return this.userSubject.value;
   }
 
-  getMenusByUserType(userType) {
-    return this.http.get<any[]>(`${this.baseUrl}/${userType}`);
+  getMenusByModule(modulePath) {
+    return this.http.get<any>(`${this.baseUrl}/${modulePath}`);
   }
 }

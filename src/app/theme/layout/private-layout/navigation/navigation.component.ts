@@ -1,12 +1,13 @@
 // Angular import
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {RoleConfigComponent} from "../../../../private/super-admin/role-config/role-config.component";
+import {RoleConfigComponent} from "../../../../private/access-control/role-config/role-config.component";
 import {NavigationItem} from "./navigation-item";
 import {ActivatedRoute, Route, Router} from "@angular/router";
-import {UserDetailsComponent} from "../../../../private/super-admin/user-details/user-details.component";
-import {DesignationConfigComponent} from "../../../../private/super-admin/designation-config/designation-config.component";
+import {UserDetailsComponent} from "../../../../private/access-control/user-details/user-details.component";
+import {DesignationConfigComponent} from "../../../../private/access-control/designation-config/designation-config.component";
 import {AuthenticationService} from "../../../../_services";
 import {MenuService} from "../../../../_services/menu.service";
+import {AccessControlConstant} from "../../../../_constants/access-control.constant";
 
 @Component({
   selector: 'app-navigation',
@@ -15,63 +16,17 @@ import {MenuService} from "../../../../_services/menu.service";
 })
 export class NavigationComponent implements OnInit {
   // public props
+  hasInitialized = false;
   @Output() NavCollapsedMob = new EventEmitter();
   @Input() accessType;
   navCollapsedMob = window.innerWidth;
   windowWidth: number;
   hashmap = new Map<string, Component>();
   path;
-
-  superAdminNavigationItems: NavigationItem[] = [
-    {
-      id: 'accessControl',
-      title: 'Access Control',
-      type: 'parent',
-      icon: 'icon-navigation',
-      component: null,
-      children: [
-        {
-          id: 'configuration',
-          title: 'Configuration',
-          type: 'group',
-          icon: 'ti ti-key',
-          component: null,
-          children: [
-            {
-              id: 'roleConfig',
-              title: 'Role Config',
-              type: 'component',
-              icon: null,
-              component: RoleConfigComponent,
-              children: null
-            },
-            {
-              id: 'userDetails',
-              title: 'User details',
-              type: 'component',
-              icon: null,
-              component: UserDetailsComponent,
-              children: null
-            },
-            {
-              id: 'designationConfig',
-              title: 'Designation Config',
-              type: 'component',
-              icon: null,
-              component: DesignationConfigComponent,
-              children: null
-            }
-          ]
-        }
-      ]
-    }
-  ];
+  navigationItems;
+   superAdminNavigationItems: NavigationItem[];
 
   constructor(private route: ActivatedRoute, private authService: AuthenticationService, private menuService: MenuService ) {
-    this.route.url.subscribe(u => this.path = u[0].path);
-    authService.user.subscribe(u => console.log(u));
-    this.menuService.getMenusByUserType('SUPER_ADMIN').subscribe(u => console.log(u));
-
   }
 
   // public method
@@ -82,7 +37,43 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.route.url.subscribe(u => {
+      this.path = u[0].path
+      this.menuService.getMenusByModule(this.path).subscribe(v => {
+        this.menuGenerator(v, AccessControlConstant.ACCESS_CONTROL_COMPONENT_MAP)
+      });
+    });
   }
 
 
+  menuGenerator(menuListObject, componentHasMap){
+    let layerZero = menuListObject?.layerZero;
+    let layerOne = menuListObject?.layerOne;
+    let layerTwo = menuListObject?.layerTwo;
+    let navigation = [];
+    for(let i =0; i< layerZero.length; i++){
+      let objectLayerZero = layerZero[i];
+      let objectsLayerOne:[] = layerOne.filter(u => u.parentId === objectLayerZero.id)
+      let newObjectsLayerOne =[];
+      for(let j =0; j< objectsLayerOne.length; j++){
+        let objectLayerOne:any = objectsLayerOne[j];
+        let objectsLayerTwo = layerTwo.filter(v => v.parentId === objectLayerOne.id).map(k => {
+          return {...k, component: componentHasMap.get(k.id).obj}
+        })
+        objectLayerOne = {
+          ...objectLayerOne,
+          children: objectsLayerTwo
+        }
+        newObjectsLayerOne.push(objectLayerOne)
+      }
+      objectLayerZero = {...objectLayerZero,
+        children: newObjectsLayerOne
+      }
+      navigation.push(objectLayerZero);
+    }
+    console.log(navigation);
+    this.superAdminNavigationItems = navigation;
+    this.hasInitialized = true;
+  }
 }
