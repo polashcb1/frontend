@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="border-bottom">
+    <h4>Customers</h4>
+  </div>
+
+  <div class="row">
+    <div class="col-3">
+      <select class="form-select"  id="customerType">
+        <option selected>Customer Type</option>
+        <option value="R">Retail</option>
+        <option value="C">Corporate</option>
+      </select>
+    </div>
+    <div class="col-3">
+      <button type="button" class="btn btn-warning">Search</button> &nbsp;
+      <button type="button" class="btn btn-secondary">Clear All</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <ag-grid-angular
+      style="width: 100%; height: 400px;"
+      class="ag-theme-quartz"
+      [pagination]="true"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs">
+    </ag-grid-angular> </div>
+</div>
+
+<!--<div>
+  <h1><ng-container *ngComponentOutlet="dummyComponent"></ng-container></h1>
+</div>`-->
