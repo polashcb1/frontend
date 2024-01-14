@@ -13,7 +13,12 @@ import {CommonModule} from "@angular/common";
 import {MoveMoneyComponent} from "./move-money/move-money.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ExternalMoveMoneyComponent} from "./external-move-money/external-move-money.component";
+import {CustomerSummaryComponent} from "./customer-summary/customer-summary.component";
+import {PocketStatementComponent} from "./pocket-statement/pocket-statement.component";
+import {PanelViewComponent} from "./panel-view/panel-view.component";
 import {TabsModule} from "../../theme/shared/components/tabs/tabs.module";
+import { AgGridModule } from 'ag-grid-angular';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BankTransfersComponent } from './bank-transfers/bank-transfers.component';
 
 
@@ -29,7 +34,11 @@ const routes: Routes = [
     OperationsComponent,
     MoveMoneyComponent,
     ExternalMoveMoneyComponent,
-    BankTransfersComponent
+    BankTransfersComponent,
+    ExternalMoveMoneyComponent,
+    CustomerSummaryComponent,
+    PanelViewComponent,
+    PocketStatementComponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -43,6 +52,10 @@ const routes: Routes = [
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
+    MatInputModule,
+    MatDatepickerModule,
+    AgGridModule,
+    MatDialogModule
   ],
 })
 export class OperationsModule {
